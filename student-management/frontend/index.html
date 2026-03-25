@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management System</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Student Management</h1>
+      <p>Score Tracker & Grade Calculator</p>
+    </header>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-value" id="statTotal">0</div>
+        <div class="stat-label">Students</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="statAvg">—</div>
+        <div class="stat-label">Class Average</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="statTop" style="color: var(--green)">—</div>
+        <div class="stat-label">Top Score</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="statLow" style="color: var(--red)">—</div>
+        <div class="stat-label">Lowest Score</div>
+      </div>
+    </div>
+
+    <!-- Add Student -->
+    <div class="card">
+      <div class="card-title">Add Student</div>
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>Student Name</label>
+          <input type="text" id="studentName" placeholder="e.g. John Doe" />
+        </div>
+
+        <div class="form-group full">
+          <label>Subjects & Scores (max 100 per subject)</label>
+          <div class="subjects-list" id="subjectsList"></div>
+          <div class="add-subject-row">
+            <input type="text" id="newSubjectName" placeholder="Subject name (e.g. Math)" />
+            <button class="btn btn-secondary btn-sm" onclick="addSubjectField()">+ Add Subject</button>
+          </div>
+        </div>
+
+        <div class="form-group full" style="margin-top:8px">
+          <button class="btn btn-primary" onclick="addStudent()">Add Student</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Student Table -->
+    <div class="card" id="tableCard">
+      <div class="card-title">Student Records</div>
+      <div id="emptyState" class="empty-state">
+        <p>No students yet. Add your first student above.</p>
+      </div>
+      <div class="table-wrapper" id="tableWrapper" style="display:none">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Student Name</th>
+              <th>Subjects</th>
+              <th>Total</th>
+              <th>Average</th>
+              <th>Grade</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="studentBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal">
+      <div class="modal-title">Edit Student</div>
+      <div class="form-group" style="margin-bottom:16px">
+        <label for="editName">Student Name</label>
+        <input type="text" id="editName" name="editName" placeholder="Enter student name" />
+      </div>
+      <div class="form-group">
+        <label>Subjects & Scores</label>
+        <div class="subjects-list" id="editSubjectsList"></div>
+        <div class="add-subject-row" style="margin-top:10px">
+          <input type="text" id="editNewSubjectName" placeholder="Add another subject" />
+          <button class="btn btn-secondary btn-sm" onclick="addEditSubjectField()">+ Add</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveEdit()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
